@@ -1,0 +1,3 @@
+[submodule "GatewayMicroservices"]
+	path = GatewayMicroservices
+	url = https://github.com/MACTEPwar/GatewayMicroservices.git
