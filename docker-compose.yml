@@ -1,0 +1,33 @@
+version: "1"
+#pre-up: "./update-develop.sh"
+services:
+    db:
+        image: "postgres"
+        ports:
+            - "0.0.0.0:55533:5432"
+        environment:
+            POSTGRES_PASSWORD: "postgres"
+    gateway:
+        build:
+            context: /GatewayMicroservices/GatewayMicroservices
+            dockerfile: ./Dockerfile
+        ports:
+            - "0.0.0.0:3000:3000"
+        # volumes:
+            # - ./logs/api-gateway:/app/out/logs
+            # - ./configs/api-gateway/appsettings.docker.json:/app/out/appsettings.docker.json
+        depends_on:
+            - db
+        restart: on-failure
+    auth-web-service:
+        build:
+            context: /GatewayMicroservices/AuthMicroservice
+            dockerfile: ./Dockerfile
+        ports:
+            - "0.0.0.0:6003:6003"
+        # volumes:
+        #     - ./logs/auth-web-service:/app/out/logs
+        #     - ./configs/auth-web-service/appsettings.docker.json:/app/out/appsettings.docker.json
+        depends_on:
+            - db
+        restart: on-failure
