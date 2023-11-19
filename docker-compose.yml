@@ -24,7 +24,7 @@ services:
             context: /GatewayMicroservices/AuthMicroservice
             dockerfile: ./Dockerfile
         ports:
-            - "0.0.0.0:6003:6003"
+            - "0.0.0.0:3001:3001"
         # volumes:
         #     - ./logs/auth-web-service:/app/out/logs
         #     - ./configs/auth-web-service/appsettings.docker.json:/app/out/appsettings.docker.json
